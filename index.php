@@ -16,3 +16,12 @@
 
    //Retorna o estado 53
    print_r($cep->getState(53));
+
+   //Retorna todas as cidades
+   print_r($cep->getAllCities());
+
+   //Retorna todas as cidades de um estado
+   print_r($cep->getCitiesOfState(53));
+
+   //Retorna a cidade 5221858
+   print_r($cep->getCity(5221858));

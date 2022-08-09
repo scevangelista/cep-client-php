@@ -85,7 +85,7 @@ Class CEP
 
 
    /**
-    * Retorna todos os estados cadastrados
+    * Retorna todos os estados de um país
     */
    public function getStatesOfCountry(int $country_code) : Array
    {
@@ -106,7 +106,7 @@ Class CEP
      return $states;
    }
 
-   
+
    /**
     * Retorna dados de um estado pelo código
     */
@@ -125,6 +125,68 @@ Class CEP
       }
  
       return $state;
+   }
+
+
+   /**
+    * Retorna todas as cidades cadastradas
+    */
+   public function getAllCities() : Array
+   {
+      $cities = Array();
+ 
+      $retCom = $this->comunicate($this->getBaseURL()."/cities");
+      foreach ($retCom as $cityRet) {
+         $nCity['code'] = $cityRet->code;
+         $nCity['name'] = $cityRet->name;
+         $nCity['state_code'] = $cityRet->state_code;
+ 
+         $cities[] = $nCity;
+      }
+ 
+      return $cities;
+   }
+
+
+   /**
+    * Retorna todas as cidades de um estado
+    */
+   public function getCitiesOfState(int $state_code) : Array
+   {
+      $cities = Array();
+  
+      $retCom = $this->comunicate(
+                     $this->getBaseURL()."/cities/state/".$state_code);
+
+      foreach ($retCom as $cityRet) {
+         $nCity['code'] = $cityRet->code;
+         $nCity['name'] = $cityRet->name;
+         $nCity['state_code'] = $cityRet->state_code;
+  
+         $cities[] = $nCity;
+      }
+  
+      return $cities;
+   }
+
+   
+   /**
+    * Retorna dados de uma cidade pelo código
+    */
+   public function getCity(int $code) : Array
+   {
+      $city = Array();
+  
+      $retCom = $this->comunicate(
+                     $this->getBaseURL()."/cities/".$code);
+
+      foreach ($retCom as $cityRet) {
+         $city['code'] = $cityRet->code;
+         $city['name'] = $cityRet->name;
+         $city['state_code'] = $cityRet->state_code;
+      }
+  
+      return $city;
    }
 
 
