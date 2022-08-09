@@ -85,6 +85,29 @@ Class CEP
 
 
    /**
+    * Retorna todos os estados cadastrados
+    */
+    public function getStatesOfCountry(int $country_code) : Array
+    {
+       $states = Array();
+ 
+       $retCom = $this->comunicate(
+                     $this->getBaseURL()."/states/country/".$country_code);
+
+       foreach ($retCom as $stateRet) {
+          $nState['code'] = $stateRet->code;
+          $nState['name'] = $stateRet->name;
+          $nState['country_code'] = $stateRet->country_code;
+          $nState['initials'] = $stateRet->initials;
+ 
+          $states[] = $nState;
+       }
+ 
+       return $states;
+    }
+
+
+   /**
     * Comunica com o serviço CEP
     */
    private function comunicate(String $url) : mixed
