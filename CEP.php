@@ -87,24 +87,45 @@ Class CEP
    /**
     * Retorna todos os estados cadastrados
     */
-    public function getStatesOfCountry(int $country_code) : Array
-    {
-       $states = Array();
+   public function getStatesOfCountry(int $country_code) : Array
+   {
+      $states = Array();
  
-       $retCom = $this->comunicate(
+      $retCom = $this->comunicate(
                      $this->getBaseURL()."/states/country/".$country_code);
 
-       foreach ($retCom as $stateRet) {
-          $nState['code'] = $stateRet->code;
-          $nState['name'] = $stateRet->name;
-          $nState['country_code'] = $stateRet->country_code;
-          $nState['initials'] = $stateRet->initials;
+      foreach ($retCom as $stateRet) {
+         $nState['code'] = $stateRet->code;
+         $nState['name'] = $stateRet->name;
+         $nState['country_code'] = $stateRet->country_code;
+         $nState['initials'] = $stateRet->initials;
  
-          $states[] = $nState;
-       }
+         $states[] = $nState;
+      }
  
-       return $states;
-    }
+     return $states;
+   }
+
+   
+   /**
+    * Retorna dados de um estado pelo código
+    */
+   public function getState(int $code) : Array
+   {
+      $state = Array();
+ 
+      $retCom = $this->comunicate(
+                     $this->getBaseURL()."/states/".$code);
+
+      foreach ($retCom as $stateRet) {
+         $state['code'] = $stateRet->code;
+         $state['name'] = $stateRet->name;
+         $state['country_code'] = $stateRet->country_code;
+         $state['initials'] = $stateRet->initials;
+      }
+ 
+      return $state;
+   }
 
 
    /**

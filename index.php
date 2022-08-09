@@ -13,3 +13,6 @@
 
    //Retorna todos os estados do país 1058
    print_r($cep->getStatesOfCountry(1058));
+
+   //Retorna o estado 53
+   print_r($cep->getState(53));
