@@ -5,3 +5,5 @@
    print_r($cep->getAllCountries());
 
    print_r($cep->getCountry(1058));
+
+   print_r($cep->getAllStates());
