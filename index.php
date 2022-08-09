@@ -1,15 +1,7 @@
 <?php
+   require_once 'CEP.php';
+   $cep = new CEP();
    
+   print_r($cep->getAllCountries());
 
-
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, "example.com");
-
-    //return the transfer as a string
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-    // $output contains the output string
-    $output = curl_exec($ch);
-
-    // close curl resource to free up system resources
-    curl_close($ch);     
+   print_r($cep->getCountry(1058));
